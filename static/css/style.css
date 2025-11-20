@@ -1,35 +1,49 @@
-/* ---------- General Layout ---------- */
+/* 🌾 Background Video */
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  filter: brightness(80%);
+}
+
+/* 🌿 Page Layout */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: url("../images/leaves_pattern.png"),
-              linear-gradient(to right, #a8e063, #56ab2f);
-  background-repeat: repeat;
-  background-size: 300px auto, cover;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  color: #1c2b1c;
 }
 
-/* ---------- Header ---------- */
+/* 🌻 Minimal Header — LOGO ONLY */
 .app-header {
-  text-align: center;
-  padding: 20px 0 10px;
-  background: linear-gradient(90deg, #3c9a46, #5bd75a);
-  color: white;
   width: 100%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: center;
+  padding: 25px 0;
+  background: transparent;   /* No overlay */
+  box-shadow: none;          /* No shadow */
 }
 
 .app-logo {
-  width: 60px;
-  height: 60px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  vertical-align: middle;
+  margin: 0;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 12px rgba(255,255,255,0.7);
 }
 
-/* ---------- Chat Container ---------- */
+.app-logo:hover {
+  transform: scale(1.07);
+}
+
+/* 💬 Chat Container */
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -37,21 +51,22 @@ body {
   background: rgba(255, 255, 255, 0.9)
               url("../images/tractor.jpg") no-repeat right bottom;
   background-size: 250px auto;
-  border-radius: 15px;
+  border-radius: 20px;
   width: 90%;
   max-width: 750px;
   height: 80%;
-  margin-top: 25px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 10px; /* moved up slightly since header is smaller */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  backdrop-filter: blur(6px);
 }
 
-/* ---------- Chat Box ---------- */
+/* 🪴 Chat Box */
 .chat-box {
   padding: 20px;
   overflow-y: auto;
   flex-grow: 1;
-  background-color: #f8fff4;
+  background-color: rgba(248, 255, 244, 0.8);
 }
 
 .user-message,
@@ -70,23 +85,23 @@ body {
   color: #1b3d1b;
   align-self: flex-end;
   margin-left: auto;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 .bot-message {
   background: #edf9e3;
   color: #204020;
   align-self: flex-start;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-/* ---------- Chat Form ---------- */
+/* 🪴 Chat Input Form */
 .chat-form {
   display: flex;
   align-items: center;
   padding: 12px 20px;
   border-top: 1px solid #d4e9ce;
-  background: #f0f8ef;
+  background: rgba(240, 248, 239, 0.9);
 }
 
 .chat-form input {
@@ -101,7 +116,7 @@ body {
 
 .chat-form input:focus {
   border-color: #5bd75a;
-  box-shadow: 0 0 6px rgba(91,215,90,0.3);
+  box-shadow: 0 0 6px rgba(91,215,90,0.4);
 }
 
 .chat-form button {
@@ -119,9 +134,10 @@ body {
 
 .chat-form button:hover {
   background: linear-gradient(90deg, #5bd75a, #8be68a);
+  transform: scale(1.05);
 }
 
-/* ---------- Floating doodle animation ---------- */
+/* 🍃 Floating Doodles */
 .floating-leaf,
 .floating-crop {
   position: fixed;
@@ -164,4 +180,18 @@ body {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
   }
+}
+
+/* 🌤 Scrollbar Style */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #94d394;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #5bd75a;
 }

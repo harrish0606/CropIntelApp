@@ -4,28 +4,62 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CropIntel - Smart Agri Assistant</title>
+
+  <!-- Website Icon -->
   <link rel="icon" href="{{ url_for('static', filename='images/cropintel_icon.png') }}" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <!-- Logo Styling -->
+  <style>
+    .app-header {
+      text-align: center;
+      margin-top: 40px;
+      color: white;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .app-logo {
+      width: 140px;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95);}
+      to { opacity: 1; transform: scale(1);}
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Floating doodle art elements -->
+
+  <!-- 🌾 Animated Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="{{ url_for('static', filename='images/background.mp4') }}" type="video/mp4">
+  </video>
+
+  <!-- Floating doodles -->
   <div class="floating-leaf" id="leaf1"></div>
   <div class="floating-leaf" id="leaf2"></div>
   <div class="floating-crop" id="crop1"></div>
 
-  <!-- Header -->
+  <!-- 🌻 Header Section with Logo -->
   <header class="app-header">
-    <img
-      src="{{ url_for('static', filename='images/cropintel_icon.png') }}"
-      alt="CropIntel Logo"
+    <img 
+      src="{{ url_for('static', filename='images/cropintel_logo.png') }}" 
+      alt="CropIntel Logo" 
       class="app-logo"
     />
     <h1>CropIntel</h1>
     <p>Your Smart Agriculture Assistant 🌾</p>
   </header>
 
-  <!-- Chat container -->
+  <!-- Chat Section -->
   <main class="chat-container">
     <div id="chat-box" class="chat-box">
       <div class="bot-message">
@@ -33,7 +67,7 @@
       </div>
     </div>
 
-    <!-- Chat input -->
+    <!-- Message Input -->
     <form id="chat-form" class="chat-form" onsubmit="return sendMessage(event)">
       <input
         type="text"
@@ -45,7 +79,7 @@
     </form>
   </main>
 
-  <!-- Script to send and display messages -->
+  <!-- Chat Script -->
   <script>
     async function sendMessage(event) {
       event.preventDefault();
@@ -54,16 +88,15 @@
       const msg = userInput.value.trim();
       if (!msg) return;
 
-      // Display user message
+      // Show user message
       const userMsg = document.createElement("div");
       userMsg.className = "user-message";
       userMsg.textContent = msg;
       chatBox.appendChild(userMsg);
       chatBox.scrollTop = chatBox.scrollHeight;
-
       userInput.value = "";
 
-      // Fetch response from Flask backend
+      // Backend call
       const response = await fetch("/get", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -78,5 +111,6 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
+
 </body>
 </html>
